@@ -1,0 +1,808 @@
+hello world
+hello 没有
+$ mkdir Test
+$ cd Test
+$ pwd
+/Test
+四：在本地创建版本库：
+①：找到一个适当的地方，点击右键Git Bash Here进入命令行输入以下命令创建一个文件夹：
+$ mkdir Test
+$ cd Test
+$ pwd
+/Test
+1
+2
+3
+4
+5
+pwd命令显示当前目录，记录路径方便下面的操作。
+②通过git init命令把此目录变为可以Git管理的仓库，经过这个操作，当前目录下多了一个.git的目录，这个目录是Git来跟踪管理版本库的，一般情况下不要修改以防破坏Git仓库。
+$ git init
+Initialized empty Git repository in D:/Git/Test/.git/
+1
+2
+3
+五：添加文件到版本库
+我们可以先打开文件夹，先创建一个hellogit.txt放入该目录下。经过以下两步就可将文件放入到版本库中了：
+①：用命令git add告诉Git，把文件添加到仓库
+--------------------- 
+作者：Suhw 
+来源：CSDN 
+原文：https://blog.csdn.net/sssssuuuuu666/article/details/78565381 
+版权声明：本文为博主原创文章，转载请附上博文链接！首页
+博客
+学院
+下载
+图文课
+论坛
+APP
+问答
+商城
+VIP会员
+活动
+招聘
+ITeye
+GitChat
+
+搜博主文章
+写博客 小程序 消息 登录注册
+原
+Git-如何在windows下安装Git并用GitHub同步
+2017年11月17日 21:18:13 Suhw 阅读数：3139
+ 版权声明：本文为博主原创文章，未经博主允许不得转载。	https://blog.csdn.net/sssssuuuuu666/article/details/78565381
+一：下载msysgit，然后按默认选项安装即可。安装包下载链接
+二：安装完成后，在桌面点击右键就会有Git Bash Here选项，点击会弹出以下界面。这里写图片描述
+三：设置自己的名字和邮箱：
+因为Git是分布式版本控制系统，所以，每个机器都必须自报家门：你的名字和Email地址。在命令行中输入以下命令并填入相关信息：
+$ git config --global user.name "Your Name"
+$ git config --global user.email "email@example.com"
+1
+2
+3
+四：在本地创建版本库：
+①：找到一个适当的地方，点击右键Git Bash Here进入命令行输入以下命令创建一个文件夹：
+$ mkdir Test
+$ cd Test
+$ pwd
+/Test
+1
+2
+3
+4
+5
+pwd命令显示当前目录，记录路径方便下面的操作。
+②通过git init命令把此目录变为可以Git管理的仓库，经过这个操作，当前目录下多了一个.git的目录，这个目录是Git来跟踪管理版本库的，一般情况下不要修改以防破坏Git仓库。
+$ git init
+Initialized empty Git repository in D:/Git/Test/.git/
+1
+2
+3
+五：添加文件到版本库
+我们可以先打开文件夹，先创建一个hellogit.txt放入该目录下。经过以下两步就可将文件放入到版本库中了：
+①：用命令git add告诉Git，把文件添加到仓库
+$ git add hellogit.txt
+1
+2
+②： 用命令git commit -m “wrote a readme file”告诉Git，把文件提交到仓库，此处的wrote a readme file为本次提交的说明，可以输入任意内容，当然最好是有意义的，这样你就能从历史记录里方便地找到改动记录
+$ git commit -m "hellogit"
+[master (root-commit) 6c4fe71] hellogit
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 hellogit.txt
+
+1
+2
+3
+4
+5
+6
+六：添加远程库
+此时你已经在本地创建了一个Git仓库后，又想在GitHub创建一个Git仓库，并且让这两个仓库进行远程同步，这样，GitHub上的仓库既可以作为备份，又可以让其他人通过该仓库来协作。
+①注册并登录GitHub，按照以下三步操作即可创建一个仓库。第一步为创建一个新的仓库，第二步为仓库起一个名字，第三步确认创建。
+这里写图片描述
+
+②可以把一个已有的本地仓库与之关联，然后把本地仓库的内容推送到GitHub仓库。按照上面提示创建完成后会转到当前页面。注意圈出的内容，将以下内容复制。
+这里写图片描述
+
+复制完成后，回到我们的Git Bash，输入以下命令，再粘贴上刚才复制的内容，就将我们本地的仓库和远程库连接了起来。
+这里写图片描述
+
+七：传文件到远程库
+按照前面的提示，我们已经安装好了本地的仓库以及远程的仓库，并且进行了简单的配置，这时候我们可以尝试提交文件了。输入push命令：
+$ git push -u origin master
+Counting objects: 3, done.
+Writing objects: 100% (3/3), 208 bytes | 0 bytes/s, done.
+Total 3 (delta 0), reused 0 (delta 0)
+To git@github.com:SssUuuu/Test.git
+ * [new branch]      master -> master
+Branch master set up to track remote branch master from origin.
+1
+2
+3
+4
+5
+6
+7
+8
+完成之后我们再刷新GitHub就能看到文件已经同步完成。
+这里写图片描述
+
+以后只要本地作了提交，就可以通过以下命令来把本地最新修改推送至GitHub
+ git push origin master
+1
+也就是说以后我们想在远程仓库中同步我们的文件，只需要先将文件传到本地仓库，再pull到远程库：
+$ git add hellogit.txt
+$ git commit -m "hellogit"
+ git push origin master
+1
+2
+3
+这里写图片描述
+
+可能会遇到的错误解决方法：
+SSH警告：
+当第一次使用Git的clone或者push命令连接GitHub时，会得到一个警告：
+The authenticity of host 'github.com (xx.xx.xx.xx)' can't be established.
+RSA key fingerprint is xx.xx.xx.xx.xx.
+Are you sure you want to continue connecting (yes/no)?
+1
+2
+3
+这是因为Git使用SSH连接，此时只需要输入yes回车即可。并且Git会输出一个警告，告诉你已经把GitHub的Key添加到本机的一个信任列表里了：
+
+Warning: Permanently added 'github.com' (RSA) to the list of known hosts.
+1
+这个警告只会出现一次，后面的操作就不会有任何警告了。
+
+公钥未配置：
+在操作时出现Permission denied (publickey). fatal: Could not read from remote respository.解决办法：
+①：输入ssh-keygen -t rsa -C “邮箱”按三次回车，查询到图中存放公钥的地址。 
+这里写图片描述
+
+②：找到对应文件夹打开此文件，将公钥复制。 
+这里写图片描述
+
+③：将公钥输入到github里的SSH Keys 
+<1>进入github点击头像下的设置。 
+这里写图片描述
+
+<2>复制公钥到key区域即可。 
+这里写图片描述
+
+<3>测试是否成功，输入以下命令并出现对应结果即可： 
+这里写图片描述
+
+白发的“死对头”，每天泡水喝，白发三天变黑发！
+咕泡 · 猎媒
+ 
+
+想对作者说点什么
+ huayangshiboqi
+huayangshiboqi： 厉害了，第一次用，这些提示相当全面了(1年前#2楼)
+m0_37711752
+热浪2017： 当第一次使用Git的clone或者push命令连接GitHub时，会得到一个警告：(1年前#1楼)
+如何在windows下使用git及github仓库管理项目
+阅读数 327
+
+第一，下载并安装git目前windows版本的git有几种实现，但我们选择msysgit发行版，这是目前做得兼容性最好的。下载地址：http://code.google.com/p/msysgit/d...
+博文
+来自：	JeamKing的专栏
+GitHub的Windows客户端的使用教程
+阅读数 3万+
+
+GitHubforWindows客户端的使用教程干了这么久的Android开发是时候发表博客来记载自己的所学，方便以后温故而知新。第一篇就拿GitHub的使用来练练手，当然，本博客如果地方哪些说的不对...
+博文
+来自：	Free_Yu
+Windows下如何使用git管理github
+阅读数 3458
+
+这篇文章是完全没接触过git都能学会的相信我专为初学者准备，因为播猪也知道刚刚学的时候，特别迷，上网搜的都是一些小片段，迷迷迷迷迷啊！！废话不说，看下面：第一步：下载gitbash很多人会问，为什么要...
+博文
+来自：	luosaosao的博客
+老中医说：饭后一件事，变成易瘦体质，想瘦多少就瘦多少
+东迈 · 猎媒
+Windows下，Hexo+GitHub搭建博客
+阅读数 2178
+
+在Windows环境下，结合hexo和GitHub搭建博客hexo，有丰富的主题，可以由我们选择，这里是基于next主题的hexo配置呦...
+博文
+来自：	ThinkerWalker
+gitHub使用入门和github for windows的安装教程
+阅读数 2398
+
+在看这篇教程之前我想大家也在搜索怎样使用gitHub托管自己的项目，在使用gitHub之前我也遇到过各种问题，在网上我也搜索了很多，但总觉得网上搜索到的东西很多很杂，有的根本不知道是在表达什么。在这过...
+博文
+来自：	huantuo4908的博客
+git/svn钩子自动同步web目录
+阅读数 342
+
+已有git或svn环境初始化web项目svn:检出项目到web目录:svncosvn://localhost/trunk/www/app--username&quot;svn用户名&quot;--pa...
+博文
+来自：	小周的博客
+git同步项目至GitHub纯命令行步骤(Windows版)
+阅读数 1324
+
+在电脑上下载并安装git，下载地址在电脑中新建文件夹用于存放git仓库在该文件夹内按住Shift+鼠标右键，然后选择bashhere在弹出的黑窗口中输入ssh-keygen-trsa-C"yourma...
+博文
+来自：	fengbird的博客
+利用Git For Windows进行本地文件同步
+阅读数 491
+
+Git使用记录安装Git创建Repository和SSHkey1创建Repository2创建SSHkey利用Git进行文件同步1进行本地git文件的创建2将本地的git文件同步到服务器上参考资料Gi...
+博文
+来自：	West.C.的博客
+ 
+windows如何设置本地git仓库与远程的github关联 - SeaS..._CSDN博客
+11-22
+
+5、测试ssh key是否成功,使用命令“ssh -T git@github.com”,如果出现You’ve...Git-如何在windows下安装Git并用GitHub同步- Suhw 11-17 2333 一:下载msysg...
+
+windows 环境下 第一次git连接github - u011859677的专..._CSDN博客
+11-9
+
+1.注册github账号 2.下载安装git 客户端 (安装后 包含git gui,git bash,git...Git-如何在windows下安装Git并用GitHub同步 - suhw(nothing is impossible for ...
+
+Windows下git连接GitHub（github.com）、码市（coding.net）、码云（gitee.com）
+阅读数 1976
+
+1、安装git与注册git下载安装及简单使用请参考：传送门在三个网站分别进行注册，本人比较懒，使用相同的用户名、邮箱及密码进行注册2、设置公钥git生成公钥钥，使用如下命令：$ssh-keygen-t...
+博文
+来自：	li532331251的博客
+在Eclipse中安装git（从github上下载项目到Eclipse）
+阅读数 5330
+
+  打开Eclipse，点击左上角help，选择Marketplace（不同Eclipse版本中会有不一样的名字，但是认准Marketace即可）,在Search中输入egit，进行搜索。在搜索结果中...
+博文
+来自：	白衣不尘
+windows下Git和GitHub的安装和基本使用 - weixin_39683..._CSDN博客
+4-12
+
+Git-如何在windows下安装Git并用GitHub同步 11-17 阅读数 3017 一:下载msysgit,然后按默认选项安装即可。安装包下载链接二:安装完成后,在桌面点击右键就会有Git...
+
+windows下安装git并配置到编辑器上去 - 鱼爻 - CSDN博客
+11-15
+
+下载git 从git官网上去下载windows版,记得别点错不是 git for windows 安装 一...Git-如何在windows下安装Git并用GitHub同步 - Suhw 11-17 2314 一:下载msys...
+
+[转] 在Windows下安装github并进行配置
+阅读数 119
+
+参考：https://www.cnblogs.com/lyr2015/p/6730476.html
+博文
+来自：	Eric_daluni的博客
+Git - 在windows环境中使用命令行操作github - 爱生活 - CSDN博客
+11-24
+
+之前介绍过了在本地使用github的方法,是在Linux环境下的,现在来说一下在windows...Git-如何在windows下安装Git并用GitHub同步 - Suhw 11-17 2338 一:下载msy...
+
+Windows下git安装使用教程 - mengdc的博客 - CSDN博客
+3-8
+
+HEAD指向的版本就是当前版本,因此,Git允许我们在版本的历史之间穿梭,使用命令git...Git-如何在windows下安装Git并用GitHub同步 11-17 阅读数 2792 一:下载msysgit...
+
+Windows下如何安装Git？
+阅读数 91
+
+请阅读以下相关信息。选择安装位置。（注：本人安装位置未采用默认安装位置，所以选择安装在”D:\Git”目录下。）选择安装组件。（注：如无特殊要求默认即可，否则按需安装。）创建开始菜单目录。选择Git默...
+博文
+来自：	野马的博客
+在windows上安装git
+阅读数 2308
+
+GitHub使用git分布式版本控制系统，而git最初是LinusTorvalds为帮助Linux开发而创造的，它针对的是Linux平台，因此git和Windows从来不是最好的朋友，因为它一点也不像...
+博文
+来自：	LG_49的博客
+如何利用RStudio开发R包,并使用git同步到github中(How ..._CSDN博客
+11-9
+
+**比如我的账号为: myname, 邮箱为: myemail@163.com** 在git终端下运行下面...Git-如何在windows下安装Git并用GitHub同步 - suhw(nothing is impossible for...
+
+Windows下给GitHub 配置 GIT 工具时密匙添加问题 - w24..._CSDN博客
+11-10
+
+让自己的电脑克隆一个自己所创建的库,方面自己电脑上的代码同步到GitHub你所创建...Git-如何在windows下安装Git并用GitHub同步- Suhw 11-17 2301 一:下载msysgi...
+
+
+一 Windows下git的安装与配置
+阅读数 8048
+
+一、Git之下载1、从Git官网下载一个Git安装包，官网地址为：http://git-scm.com/downloads；二、Git之安装1、点击安装包git.exe，默认安装即可；2、在设置pat...
+博文
+来自：	u010865136的专栏
+如何在windows下使用git及github仓库管理项目 - 快乐&&..._CSDN博客
+4-5
+
+目前windows版本的git有几种实现,但我们选择msysgit发行版,这是目前做得兼容性最...Git-如何在windows下安装Git并用GitHub同步 11-17 阅读数 2959 一:下载msysgi...
+
+windows安装git并使用
+阅读数 5577
+
+最早Git是在Linux上开发的，很长一段时间内，Git也只能在Linux和Unix系统上跑。不过，慢慢地有人把它移植到了Windows上。现在，Git可以在Linux、Unix、Mac和Window...
+博文
+来自：	江城宴的博客
+Git使用教程 Windows使用Git全攻略
+阅读数 1万+
+
+在Windows上安装、使用Git全面教程。
+博文
+来自：	jshguoxin的博客
+Git-2.17.0-64 windows安装 05-05 Git-2.17.0-64 ， windows上安装git，官网下载，安全可靠。 下载
+windows 环境下 第一次git连接github
+阅读数 1940
+
+1.注册github账号2.下载安装git客户端（安装后包含gitgui，gitbash，gitcmd）3.打开gitbash（bash是cmd的升级版，建议使用bash）输入如下命令，并按回车git...
+博文
+来自：	u011859677的专栏
+ 
+Github Windows客户端安装
+阅读数 528
+
+我的系统是win10，64位1.下载地址https://git-scm.com/downloads2.选择Windows下载保存3.点击下载的exe文件进行安装，无须特殊设置，就连续下一步、下一步就可...
+博文
+来自：	看最远的地方
+windows下安装git并配置到编辑器上去
+阅读数 402
+
+下载git从git官网上去下载windows版，记得别点错不是gitforwindows安装一路回车就好配置初次配置Git在开始使用Git之前，你需要配置Git。在命令行工具中运行以下每行，确保所有选...
+博文
+来自：	鱼爻
+Git-2.17版本Windows环境系统下安装教程
+阅读数 3293
+
+一、下载地址附上链接Git下载二、Windows环境安装Git1，点next2，选择自己想要的安装路径，一般选默认，然后点击next3，勾选第一个，创建桌面快捷方式。然后点击next4，点击next5...
+博文
+来自：	codingforhaifeng的博客
+Git与Github for windows
+阅读数 424
+
+Git与Githubforwindows文章目录Git与Githubforwindows什么是GitGit的基本操作建立本地仓库增删文件Git基本操作Github什么是GitGit是目前世界上最先进的...
+博文
+来自：	丶小祖宗的博客
+用Git从GitHub上下载源码
+阅读数 3489
+
+参考博客：https://www.baidu.com/link?url=kVFCl0_ie967mbNRD-UqQI5cZBCpOSvYd7iIGfMtko_f5upZXbEsO2-HcGUCFFa7...
+博文
+来自：	独钓寒江雪
+ 
+Windows下Github使用
+阅读数 828
+
+Windows下使用GitHubGitHub支持使用SSH协议检出与上传Code,项目的SSH协议的地址可以在如下页面找到：在GitCMD中使用gitclone协议地址会出现如下错误：SSH是需要密码...
+博文
+来自：	oscar999的专栏
+github上下载资源 for windows
+阅读数 122
+
+步骤：1.下载gitbash2.在gitbash终端命令中输入资源所在的网址，如图：3.在终端所在路径查看资源是否下载成功...
+博文
+来自：	xueluowutong的博客
+windows下github管理
+阅读数 259
+
+以前用mac搭建的github，使用hexo主题，后来换了windows电脑后，重新管理github，查找资料后整理一下笔记1.首先要在windows下安装git，这个不用多说2.右键鼠标，选中“Gi...
+博文
+来自：	cocos2dGirl的专栏
+Github Desktop for Windows 10 安装教程
+阅读数 2447
+
+现在的githubdesktop的网页好像被q了，这里给出离线下载地址：githubdesktop离线下载（截止17.10.21还是可以下载的）1.下载完成后，点击打开2.打开后，会在当前目录生成如下...
+博文
+来自：	link98
+Git同步代码的基本步骤
+阅读数 8913
+
+这里给大家安利一个非常强大的代码同步工具：Git。它可以让我们更轻松的同步其他人的代码，个人觉得比svn要好用很多。具体关于Git的一些细节很复杂我自己也说不太清楚，大家自行百度。下面展示一下要使用G...
+博文
+来自：	antchow-
+ 
+Windows下git客户端的安装和配置
+阅读数 2万+
+
+一、基础环境Windows操作系统git客户端安装程序（下载地址：https://git-scm.com/downloads）二、操作步骤1.安装git客户端，勾选与鼠标右键的关联（该项默认都会勾选）...
+博文
+来自：	bird3014的博客
+Git 中文详细安装教程
+阅读数 8万+
+
+GitSetup2.17.0Git中文安装教程AUTHOR： 谢宗南https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh 本人GitHub...
+博文
+来自：	谢宗南的博客
+git 2.14.1(windows)安装教程
+阅读数 1万+
+
+git简介Git是什么？Git是目前世界上最先进的分布式版本控制系统（没有之一）。Git有什么特点？简单来说就是：高端大气上档次！下载地址https://git-for-windows.github....
+博文
+来自：	melody_sy博客
+git-2.10.2-64-bit安装教程
+阅读数 3243
+
+方便大家使用
+博文
+来自：	nly19900820的博客
+github for windows 安装指南（正经严肃）
+阅读数 8381
+
+先写一下遇到的困难吧...1,VSCouldnotopen'***.VC.opendb'”解决方案：在"项目路径\.git\info\"路径下找到"exclude"文件，用文本编辑工具打开，在末尾加上...
+博文
+来自：	sinat_39549121的博客
+ 
+Windows下git安装使用教程
+阅读数 1万+
+
+git安装打开浏览器输入Git官网网站回车即可打开Git官网；点击里面的“DownloadsforWindows”即调整到下载页面等待下载即可，现在最新版本为2.10.1我下载的安装包名为Git-2....
+博文
+来自：	mengdc的博客
+windows系统下git的安装
+阅读数 4万+
+
+在linux系统下，可以直接在命令窗口安装和使用git。但是，在windows系统下，想要达到同样的效果，可以安装git，使用gitbash到达效果。具体安装步骤如下：第一步：官网上下载git   网...
+博文
+来自：	蒲厷渶と戀的博客
+Git教程（二）-如何上传和同步自己的git项目
+阅读数 6374
+
+本文来自http://blog.csdn.net/liuxian13183/ ，引用必须注明出处！	Git接触并使用多年，工作中使用较多，它的分布式存储，使每个人的电脑均为服务器的策略非常棒；再...
+博文
+来自：	步步高笔记
+GitHub for windows桌面版离线下载以及使用
+阅读数 2831
+
+GitHubforwindows离线下载以及基本操作。
+博文
+来自：	RoyYoung388的博客
+GitHub for windows离线安装
+阅读数 1万+
+
+GitHubforWindows安装失败，提供离线安装文件
+博文
+来自：	kui的博客
+码农必看：各大平台的推荐系统原来是靠它完成的，太牛了
+第四范式先荐帮助客户从0到1搭建推荐系统,显著提升用户活跃,留存,观看时长等重要业务指标
+
+
+第一次了解GitHub，在Windows下使用GitHub
+阅读数 3363
+
+心血来潮——看了一下关于版本管理工具Git要使用GitHub（一个程序员的社区网站，基于Git用于托管软件库），个人觉得要先理解Git和GitHub。这里有两个参考网站，可以做了解：Git的深入理解与...
+博文
+来自：	梦空间
+Windows 上 GitHub Desktop 的操作
+阅读数 2万+
+
+目	录	第1章	上传开源代码至GitHub    1	1.1gitWindows客户端    1	1.2注册GitHub账户    2	1.3登录    2	1.4创建本地代...
+博文
+来自：	Hanford的专栏
+windows下连接github
+阅读数 1717
+
+1.先说下网上普遍的教程先设置GitHub的username和emailgitconfig--globaluser.name"Git账号"gitconfig--globaluser.email"Git...
+博文
+来自：	永立的专栏
+git如何与原始仓库同步
+阅读数 4398
+
+git如何与原始仓库同步为fork的库配置原始远程库这些命令在linux下使用，同样在wondows下的gitbash也适用。如果你已经配置过原始远程库的路径，可以跳过这一部分，执行获取原始仓库分支和...
+博文
+来自：	Brian的博客
+新手Git for Windows 的安装、配置 及 GitHub中项目下载
+阅读数 5117
+
+官网下载：http://msysgit.github.io/一、Git安装1.下载最新版本双击运行2. 安装过程 在这里选择UseGitfromGitBashonly（最安全的选项，表示仅能在gitb...
+博文
+来自：	kqZhu的博客
+如何快速提升个性化推荐效果？
+先荐推荐系统适合首页,信息流,内容详情页等场景,支持网页, APP,小程序,快应用,1分钟安装5分钟上线,支持人工干预推荐
+
+
+windows下使用git
+阅读数 3257
+
+1.安装进入https://git-scm.com/download/win下载选择合适版本安装下载完成后默认安装就好了。安装完成右键会看到多出两个这个：GitGUI:git图形界面GitBash:命...
+博文
+来自：	minixu的博客
+windows安装git
+阅读数 1047
+
+1.在git官网下载系统对应的package地址：https://git-scm.com/download/win2.具体步骤①官网下载，根据自身os选择包下载。②运行安装包（安装的路径不要有中文）③...
+博文
+来自：	Julia_Zxr的博客
+Windows10上安装Git 2.10.2详细图解
+阅读数 1万+
+
+Git是一个开源的分布式版本控制系统，可以有效、高速的处理从很小到非常大的项目版本管理。至于详细介绍，可以去百科查看。百度百科：http://baike.baidu.com/item/GIT之前一直用...
+博文
+来自：	shuyou612的专栏
+GitHub for Windows使用教程（一）
+阅读数 4026
+
+GitHubforwindows(一)前言鉴于网上目前的教材都太落后，githubforwindows已经更新了多个版本，好多界面都发生了变化，所以来写这个教程。目的是为了帮助和我一样初学github...
+博文
+来自：	ISLAND
+Git-for-windows连接github
+阅读数 2392
+
+安装git地址：https://git-scm.com/book/zh-tw/v1/%E9%96%8B%E5%A7%8B-%E5%AE%89%E8%A3%9DGitgit配置初始化git使用git先要...
+博文
+来自：	xiang_freedom的专栏
+第四范式发布先荐推荐系统，帮助300+媒体平台实现内容升级
+先荐推荐系统由国际顶尖智能推荐团队研发,三步即可完成接入,毫秒级数据更新,支持PC,WAP, APP全平台接入
+
+
+Github for Windows使用介绍
+阅读数 7万+
+
+Git已经变得非常流行，连Codeplex现在也已经主推Git。Github上更是充斥着各种高质量的开源项目，比如rubyonrails，cocos2d等等。对于习惯Windows图形界面的程序员来讲...
+博文
+来自：	harbinxxh的专栏
+Windows+Git+GitHub
+阅读数 2285
+
+概要：Git分布式代码管理工具，gitHub是只支持git的远程代码库，本文介绍在Windows平台上使用这套代码管理系统。从创建GitHub仓库（repository）到使用git提交代码到gith...
+博文
+来自：	平缓而扎实的前进吧。
+用live555将内网摄像机视频推送到外网服务器，附源码
+阅读数 3万+
+
+最近很多人问，如何将内网的摄像机流媒体数据发布到公网，如果用公网与局域网间的端口映射方式太过麻烦，一个摄像机要做一组映射，而且不是每一个局域网都是有固定ip地址，即使外网主机配置好了每一个摄像机的映射...
+博文
+来自：	Babosa的专栏
+Python2.7.13下载安装全过程（Windows版）
+阅读数 1万+
+
+前提：     我下载的Python是windows版本的，演示过程是在win10 64位操作系统上安装的。 1、下载     进入官网https://www.python.org/...
+博文
+来自：	Flora's Zone
+配置简单功能强大的excel工具类搞定excel导入导出工具类(一)
+阅读数 5万+
+
+对于J2EE项目导入导出Excel是最普通和实用功能,本工具类使用步骤简单,功能强大,只需要对实体类进行简单的注解就能实现导入导出功能,导入导出操作的都是实体对象. 请看一下这个类都有哪些功能:   ...
+博文
+来自：	李坤 大米时代 第五期
+expat介绍文档翻译
+阅读数 5万+
+
+原文地址：http://www.xml.com/pub/a/1999/09/expat/index.html 因为需要用，所以才翻译了这个文档。但总归赖于英语水平很有限，翻译出来的中文有可能...
+博文
+来自：	ymj7150697的专栏
+【小程序】微信小程序开发实践
+阅读数 28万+
+
+帐号相关流程注册范围 企业 政府 媒体 其他组织换句话讲就是不让个人开发者注册。 :)填写企业信息不能使用和之前的公众号账户相同的邮箱,也就是说小程序是和微信公众号一个层级的。填写公司机构信息,对公账...
+博文
+来自：	小雨同学的技术博客
+ucore操作系统lab2实验报告
+阅读数 5447
+
+练习1：实现 first-fit 连续物理内存分配算法 在实现first fit 内存分配算法的回收函数时，要考虑地址连续的空闲块之间的合并操作。提示:在建立空闲页块链表时，需要按照空闲页块起始地址来...
+博文
+来自：	cs_assult的专栏
+关于计算时间复杂度和空间复杂度
+阅读数 6万+
+
+相信学习编程的同学，或多或少都接触到算法的时间复杂度和空间复杂度了，那我来讲讲怎么计算。        常用的算法的时间复杂度和空间复杂度 一，求解算法的时间复杂度，其具体步骤是： 　　⑴ 找出算法...
+博文
+来自：	杨威的博客
+Hbase 布隆过滤器BloomFilter介绍
+阅读数 3万+
+
+1、主要功能 提高随机读的性能 2、存储开销 bloom filter的数据存在StoreFile的meta中，一旦写入无法更新，因为StoreFile是不可变的。Bloomfilter是...
+博文
+来自：	opensure的专栏
+webService学习（二）—— 调用自定义对象参数
+阅读数 2万+
+
+webService学习（二）—— 调用自定义对象参数 本文主要内容： 1、如何通过idea进行webService Client的简单实现（不再使用wsimport的方式，其实是ide帮我们做了...
+博文
+来自：	止水的专栏
+Windows平台SSH服务器架设攻略
+阅读数 1861
+
+SSH是一种以安全、加密方式连接远程主机或服务器的方法。SSH服务器接受从有SSH的客户机的连接，允许操作者象在本地一样地登录系统。你可以用SSH从远程运行shell和X程序。它是一种服务器维护管理的...
+博文
+来自：	天涯路的专栏
+centos 查看命令源码
+阅读数 10万+
+
+# yum install yum-utils 设置源: [base-src] name=CentOS-5.4 - Base src - baseurl=http://vault.ce...
+博文
+来自：	linux/unix
+搭建图片服务器《二》-linux安装nginx
+阅读数 6万+
+
+nginx是个好东西，Nginx (engine x) 是一个高性能的HTTP和反向代理服务器，也是一个IMAP/POP3/SMTP服务器。Nginx是由伊戈尔·赛索耶夫为俄罗斯访问量第二的Rambl...
+博文
+来自：	maoyuanming0806的博客
+JAVA设计模式之单例模式
+阅读数 77万+
+
+概念： 　　java中单例模式是一种常见的设计模式，单例模式分三种：懒汉式单例、饿汉式单例、登记式单例三种。 　　单例模式有一下特点： 　　1、单例类只能有一个实例。 　　2、单例类必须自己自己创建自...
+博文
+来自：	一个本科小生的奋斗史
+linux上安装Docker(非常简单的安装方法)
+阅读数 24万+
+
+最近比较有空，大四出来实习几个月了，作为实习狗的我，被叫去研究Docker了，汗汗！ Docker的三大核心概念：镜像、容器、仓库 镜像：类似虚拟机的镜像、用俗话说就是安装文件。 容器：类似一个轻量...
+博文
+来自：	我走小路的博客
+将Excel文件导入数据库（POI+Excel+MySQL+jsp页面导入）第一次优化
+阅读数 4万+
+
+本篇文章是根据我的上篇博客，给出的改进版，由于时间有限，仅做了一个简单的优化。相关文章：将excel导入数据库2018年4月1日，新增下载地址链接：点击打开源码下载地址十分抱歉，这个链接地址没有在这篇...
+博文
+来自：	Lynn_Blog
+wamp黄色问题解决
+阅读数 910
+
+http://blog.csdn.net/qq_32429977/article/details/50452529
+博文
+来自：	ganeshys2017的博客
+Gabor滤波器学习
+阅读数 9万+
+
+本文的目的是用C实现生成Gabor模版，并对图像卷积。并简单提一下，Gabor滤波器在纹理特征提取上的应用。 一、什么是Gabor函数（以下内容含部分翻译自维基百科）   在图像处理中，Gabor...
+博文
+来自：	Where there is life, there is hope
+weka J48决策树学习
+阅读数 8312
+
+Weka为一个Java基础上的机器学习工具，上手简单，并提供图形化界面，提供如分类、聚类、频繁项挖掘等工具，本篇文章主要写一下分类器算法中的J48算法及其实现。 一、算法 J4...
+博文
+来自：	路远，漫步前行
+Android 卸载监听详解
+阅读数 5万+
+
+目前市场上比较多的应用在用户卸载后会弹出意见反馈界面，比如360手机卫士，腾讯手机管家，应用宝等等，虽然本人不太认同其交互方式，但是在技术实现上还是可以稍微研究下的。其实要实现这个功能，最主要的就是监...
+博文
+微信支付V3微信公众号支付PHP教程(thinkPHP5公众号支付)/JSSDK的使用
+阅读数 16万+
+
+扫二维码关注，获取更多技术分享 本文承接之前发布的博客《 微信支付V3微信公众号支付PHP教程/thinkPHP5公众号支付》必须阅读上篇文章后才可以阅读这篇文章。由于最近一段时间工作比较忙，...
+博文
+来自：	Marswill
+强连通分量及缩点tarjan算法解析
+阅读数 61万+
+
+强连通分量： 简言之 就是找环（每条边只走一次，两两可达） 孤立的一个点也是一个连通分量   使用tarjan算法 在嵌套的多个环中优先得到最大环( 最小环就是每个孤立点）   定义： int Ti...
+博文
+来自：	九野的博客
+servlet+jsp实现过滤器，防止用户未登录访问
+阅读数 3万+
+
+我们可能经常会用到这一功能，比如有时，我们不希望用户没有进行登录访问后台的操作页面，而且这样的非法访问会让系统极为的不安全，所以我们常常需要进行登录才授权访问其它页面，否则只会出现登录页面，当然我的思...
+博文
+来自：	沉默的鲨鱼的专栏
+jquery/js实现一个网页同时调用多个倒计时(最新的)
+阅读数 48万+
+
+jquery/js实现一个网页同时调用多个倒计时(最新的) 最近需要网页添加多个倒计时. 查阅网络,基本上都是千遍一律的不好用. 自己按需写了个.希望对大家有用. 有用请赞一个哦! //js ...
+博文
+来自：	Websites
+MyEclipse与在线SVN（taocode）的使用（二）
+阅读数 2048
+
+使用taocode作为SVN的服务器，地址http://code.taobao.org/ 在网站上注册和登录 新建一个项目 输入相关信息 复制这个地址，一会要用 下一步在MyEclipse中向SV...
+博文
+来自：	weiyi556的博客
+关于SpringBoot bean无法注入的问题（与文件包位置有关）
+阅读数 21万+
+
+问题场景描述整个项目通过Maven构建，大致结构如下： 核心Spring框架一个module spring-boot-base service和dao一个module server-core 提供系统...
+博文
+来自：	开发随笔
+算法经典面试题整理（java实现）
+阅读数 1万+
+
+以下从Java角度解释面试常见的算法和数据结构：字符串，链表，树，图，排序，递归 vs. 迭代，动态规划，位操作，概率问题，排列组合，以及一些需要寻找规律的题目。 1. 字符串和数组 字符...
+博文
+来自：	DUANJIEFEI的专栏
+R语言逻辑回归、ROC曲线和十折交叉验证
+阅读数 6万+
+
+自己整理编写的逻辑回归模板，作为学习笔记记录分享。数据集用的是14个自变量Xi，一个因变量Y的australian数据集。 1. 测试集和训练集3、7分组 australian ...
+博文
+来自：	Tiaaaaa的博客
+thymeleaf模板实现html5标签的非严格检查
+阅读数 4万+
+
+一、概述最近在springboot项目引入thymeleaf模板时，使用非严格标签时，运行会报错。默认thymeleaf模板对html5标签是严格检查的。二、在项目中加NekoHTML库在Maven中...
+博文
+来自：	Luck_ZZ的博客
+Java设计模式学习06——静态代理与动态代理
+阅读数 1万+
+
+一、代理模式为某个对象提供一个代理，从而控制这个代理的访问。代理类和委托类具有共同的父类或父接口，这样在任何使用委托类对象的地方都可以使用代理类对象替代。代理类负责请求的预处理、过滤、将请求分配给委托...
+博文
+来自：	小小本科生成长之路
+php+MySQL图书管理系统(二)
+阅读数 1万+
+
+第五 添加数据库管理员数据与用户数据 这个比较无聊 用java拼接了一下sql语句 然后写入数据库 这个放在附件上传就好了 第六 管理员与用户的登入验证 1、验证码。验证码一般就是...
+博文
+来自：	得之我幸--失之我命
+Keil 主题（配色方案）选择器 自带多适用主题
+阅读数 9770
+
+ 花了一天！因为要用Keil，又苦于主题不好看，一个个换主题又嫌麻烦，就写了这个东西。代码有点多，先放出配置步骤，源码在文末。V1.0，没有图片预览功能，但是随插件附赠几个类似VS的配色方案。 本是按...
+博文
+来自：	Q1275918492
+设计制作学习 机器学习教程 Objective-C培训 交互设计视频教程 颜色模型 mysql关联查询两次本表 native底部 react extjs glyph 图标 如何在网页制作中加入视频 如何在网页制作中插入视频
+
+Suhw
+
+关注
+原创
+88
+粉丝
+93
+喜欢
+167
+评论
+101
+等级： 访问： 6万+ 积分： 1619 排名： 4万+
+勋章：
+ 
+最新文章
+关于面试题中结构体内存对齐计算总结
+Linux-Ubuntu下安装zsh+OhMyZsh+autojump
+网络-HTTP不同版本之间的对比
+Linux-常用查看系统资源命令小结
+网络-TCP详解
+博主专栏
+
+C学习心得
+
+文章数：23 篇 访问量：1万+
+
+C++
+
+文章数：8 篇 访问量：5187
+归档
+2018年4月 1篇
+2018年3月 9篇
+2018年2月 2篇
+2018年1月 3篇
+2017年12月 16篇
+2017年11月 9篇
+2017年10月 5篇
+2017年9月 1篇
+2017年8月 2篇
+2017年7月 11篇
+2017年6月 4篇
+2017年5月 7篇
+2017年4月 9篇
+2017年3月 9篇
+展开
+
+与我联系
+qq：1075409429
+
+ 
+程序人生
+程序人生
+
+CSDN资讯
+CSDN资讯
+
+kefu@csdn.net QQ客服
+
+客服论坛400-660-0108
+
+工作时间 8:30-22:00
+
+关于我们招聘广告服务 网站地图
+
+百度提供站内搜索 京ICP备19004658号
+
+?1999-2019 北京创新乐知网络技术有限公司
+
+经营性网站备案信息 网络110报警服务
+
+北京互联网违法和不良信息举报中心
+
+中国互联网举报中心家长监护
+
+Python爬虫实战 百万AI程序员现状 CTA核心技术与应用峰会 15天共读深度学习 区块链程序员现状
+
+登录
+注册
+ 
